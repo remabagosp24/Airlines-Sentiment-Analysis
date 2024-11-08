@@ -1,0 +1,68 @@
+swagger: '2.0'
+info:
+  description: API untuk Cek Sentimen teks
+  version: 1.0.0
+  title: Cek Sentimen data
+host: localhost:5000
+basePath: /
+tags:
+  - name: tweets
+    description: Cek Sentimen data
+schemes:
+  - http
+paths:
+  /:
+    get:
+      summary: "Formulir input tweet"
+      description: "Menampilkan formulir untuk mengirimkan tweet dan mendapatkan prediksi sentimen."
+      tags:
+        - tweets
+      responses:
+        200:
+          description: "Menampilkan halaman formulir untuk input tweet."
+          schema:
+            type: string
+            example: "<html>Formulir tweet</html>"
+
+    post:
+      summary: "Prediksi sentimen tweet"
+      description: "Menerima tweet dari formulir, membersihkan teks, melakukan preprocessing, dan memprediksi sentimen."
+      tags:
+        - tweets
+      parameters:
+        - in: formData
+          name: tweet
+          required: true
+          type: string
+          description: "Tweet yang akan diprediksi sentimennya"
+          example: "Saya sangat senang hari ini!"
+      responses:
+        200:
+          description: "Prediksi sentimen tweet berhasil."
+          schema:
+            type: object
+            properties:
+              original_tweet:
+                type: string
+                description: "Tweet asli yang dimasukkan oleh pengguna"
+                example: "Saya sangat senang hari ini!"
+              predicted_sentiment:
+                type: string
+                description: "Sentimen yang diprediksi"
+                example: "Positive"
+        400:
+          description: "Request tidak valid, biasanya jika tweet tidak diberikan."
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Tweet tidak boleh kosong."
+        500:
+          description: "Terjadi kesalahan pada server."
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Internal Server Error."

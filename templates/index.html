@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentimen Flights Airlines</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        header {
+            background-color: #933093;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            resize: vertical;
+        }
+
+        button {
+            background-color: #F89C1B;
+            color: white;
+            padding: 15px 32px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #933093;
+        }
+
+        .result {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .result h2 {
+            color: #933093;
+            font-size: 18px;
+        }
+
+        .result p {
+            font-size: 16px;
+            color: #333;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 4px;
+            border-left: 4px solid #933393;
+        }
+
+        footer {
+            background-color: #f1f1f1;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            textarea {
+                font-size: 14px;
+            }
+
+            button {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Sentimen Flights Airlines
+    </header>
+
+    <div class="container">
+        <h1>Type Something:</h1>
+        <form method="POST">
+            <textarea name="tweet" rows="6" placeholder="Enter your tweet here..."></textarea>
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if original_tweet and get_sentiment %}
+        <div class="result">
+            <h2>Original Tweet:</h2>
+            <p>{{ original_tweet }}</p>
+            <h2>Sentiment:</h2>
+            <p>{{ get_sentiment }}</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <footer>
+        &copy; 2024
+    </footer>
+</body>
+</html>
